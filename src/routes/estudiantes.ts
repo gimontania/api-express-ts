@@ -14,6 +14,8 @@ const estudiantes: Estudiante[] = []; //array donde almacenamos estudiantes
 
 //obtener todos los estudiantes o filtrar bootcamp
 router.get("/", (req: Request, res: Response) => { 
+    // #swagger.description = 'obtiene la lista estudiantes o filtra por bootcamp'
+
     const { bootcamp } = req.query;
 
     if(bootcamp){
@@ -28,6 +30,8 @@ router.get("/", (req: Request, res: Response) => {
 
 //obtener estudiante por id
 router.get("/:id",(req: Request, res: Response) => {
+    // #swagger.description = 'obtiene un estudiante por su ID'
+
     const id = Number(req.params.id);
 
     const estudiante = estudiantes.find((estudiante) =>
@@ -44,6 +48,8 @@ router.get("/:id",(req: Request, res: Response) => {
 
 //crear un nuevo estudiante
 router.post("/", (req:Request, res:Response) => { //cuando alguien envíe un POST, ejecutamos esta función
+    // #swagger.description = 'crea un nuevo estudiante'
+
     const {nombre, email, bootcamp} = req.body;
 
     if(!email) { //verificamos si existe el email
@@ -67,6 +73,8 @@ router.post("/", (req:Request, res:Response) => { //cuando alguien envíe un POS
 
     //actualizar un estudiante que ya existe
     router.put("/:id", (req: Request, res: Response) => { //en este caso PUT es para ACTUALIZAR un estudiante que ya existe
+        // #swagger.description = 'actualiza un estudiante por su ID'
+
         const id = Number(req.params.id);
         const estudiante = estudiantes.find((estudiante) => estudiante.id === id);
     
@@ -87,6 +95,8 @@ router.post("/", (req:Request, res:Response) => { //cuando alguien envíe un POS
     });     
 
     //eliminar un estudiante
+    // #swagger.description = 'elimina un estudiante por su ID'
+
     router.delete("/:id", (req: Request, res: Response) => { //eliminamos un estudiante
     const id = Number(req.params.id);
     const indice = estudiantes.findIndex((estudiante) => estudiante.id === id); //buscamos la posicion del estudiante
